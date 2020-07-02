@@ -82,7 +82,13 @@ const CountyItem = ({ dataset }) => {
   );
 };
 
-const GlobalSelector = ({ handleChange, extendRight }) => {
+const GlobalSelector = ({
+  handleChange,
+  extendRight,
+  placeholder = '',
+  includeStates = true,
+  initialInputValue = '',
+}) => {
   const { stateId: location } = useParams();
   const isNarrowMobile = useMediaQuery('(max-width:500px)');
 
@@ -158,7 +164,7 @@ const GlobalSelector = ({ handleChange, extendRight }) => {
         .uniq()
         .value();
 
-      matchedItems.push(...stateMatches);
+      if (includeStates) matchedItems.push(...stateMatches);
 
       if (inputValue.length > 2) {
         const countyMatches = chain(countyDataset)
@@ -212,10 +218,21 @@ const GlobalSelector = ({ handleChange, extendRight }) => {
     }
   };
 
+  let inputPlaceholder;
+  if (placeholder) {
+    inputPlaceholder = placeholder;
+  } else {
+    inputPlaceholder =
+      isNarrowMobile && extendRight
+        ? 'Search'
+        : `Search for your ${includeStates ? 'state or ' : ''}county`;
+  }
+
   return (
     <Downshift
       onChange={selection => handleChange(selection)}
       itemToString={item => (item ? item.value : '')}
+      initialInputValue={initialInputValue}
     >
       {({
         getInputProps,
@@ -248,10 +265,7 @@ const GlobalSelector = ({ handleChange, extendRight }) => {
                   onFocus: () => {
                     openMenu();
                   },
-                  placeholder:
-                    isNarrowMobile && extendRight
-                      ? 'Search'
-                      : 'Search for your state or county',
+                  placeholder: inputPlaceholder,
                 })}
               />
             </StyledInputWrapper>

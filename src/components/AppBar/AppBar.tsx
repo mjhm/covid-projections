@@ -192,6 +192,12 @@ const _AppBar = () => {
               disableRipple
               onClick={goTo('/contact')}
             />
+            <StyledTab
+              label="Personal Risk"
+              value={5}
+              disableRipple
+              onClick={goTo('/personal-risk')}
+            />
           </StyledTabs>
           <FacebookShareButton
             url={shareURL}

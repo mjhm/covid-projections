@@ -16,6 +16,7 @@ import Contact from 'screens/Contact/Contact';
 import Terms from 'screens/Terms/Terms';
 import Privacy from 'screens/Terms/Privacy';
 import Embed from 'screens/Embed/Embed';
+import PersonalRisk from 'screens/PersonalRisk/PersonalRisk';
 import AllStates from 'screens/internal/AllStates/AllStates';
 import CompareSnapshots from 'screens/internal/CompareSnapshots/CompareSnapshots';
 import ExportImage from 'screens/internal/ShareImage/ChartExportImage';
@@ -74,6 +75,7 @@ export default function App() {
               <Route path="/contact" component={Contact} />
               <Route path="/terms" component={Terms} />
               <Route path="/privacy" component={Privacy} />
+              <Route path="/personal-risk" component={PersonalRisk} />
 
               <Route exact path="/embed/us/:stateId" component={Embed} />
               <Route

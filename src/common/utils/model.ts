@@ -68,7 +68,10 @@ export async function fetchAllCountyProjections(
   });
 }
 
-export function useProjections(location: string, county = null) {
+export function useProjections(
+  location: string,
+  county: Record<string, any> | null = null,
+) {
   const [projections, setProjections] = useState<Projections>();
 
   useEffect(() => {
